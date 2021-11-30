@@ -28,27 +28,37 @@
             android:orientation="vertical"
             android:padding="3dp">
 
-
-            <FrameLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/frame"/>
+                android:layout_gravity="center"
+                app:cardCornerRadius="10dp">
+
                 <ImageView
                     android:id="@+id/thumbnail"
                     android:layout_width="250dp"
                     android:layout_height="200dp"
-                    android:background="@drawable/frame"
+
                     android:src="@drawable/ic_podval_dom"/>
-            </FrameLayout>
+
+            </androidx.cardview.widget.CardView>
+
+<!--            <FrameLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center">-->
+<!--                <ImageView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:src="@drawable/frame"/>-->
+
+<!--            </FrameLayout>-->
+
             <TextView
                 android:id="@+id/postAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="30dp"
                 android:text="Punjabi"
                 android:textColor="#000000"
                 android:textSize="14dp"
@@ -60,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Parata"
+                android:textAlignment="center"
                 android:textColor="#373737"
                 android:textSize="16.7sp"
                 android:textStyle="bold" />
@@ -71,6 +82,7 @@
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
                 android:text="235 Review"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="10dp" />
 

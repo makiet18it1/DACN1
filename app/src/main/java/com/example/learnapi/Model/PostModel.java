@@ -5,6 +5,7 @@ public class PostModel {
 
     private Integer id;
     private String lastupdate;
+    private Integer likecount;
     private String caption;
     private String video;
     private String image;
@@ -16,8 +17,17 @@ public class PostModel {
     private String steps;
     private Integer author;
     private Integer category;
+    private String username;
 
-    public PostModel(Integer id, String lastupdate, String caption, String video, String image, Integer upvotes, Integer downvotes, Integer views, String description, String ingredients, String steps, Integer author, Integer category) {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public PostModel(Integer id, String lastupdate, String caption, String video, String image, Integer upvotes, Integer downvotes, Integer views, String description, String ingredients, String steps, Integer author, Integer category, String username) {
         this.id = id;
         this.lastupdate = lastupdate;
         this.caption = caption;
@@ -31,6 +41,7 @@ public class PostModel {
         this.steps = steps;
         this.author = author;
         this.category = category;
+        this.username = username;
     }
 
     public Integer getId() {
@@ -135,5 +146,13 @@ public class PostModel {
 
     public void setCategory(Integer category) {
         this.category = category;
+    }
+
+    public Integer getLikecount() {
+        return likecount;
+    }
+
+    public void setLikecount(Integer likecount) {
+        this.likecount = likecount;
     }
 }
