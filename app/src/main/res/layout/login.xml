@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginBottom="8dp"
-    android:layout_marginEnd="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginStart="24dp"
     android:layout_marginTop="8dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="8dp"
     android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    app:layout_constraintTop_toTopOf="parent">
+
     <TextView
+        style="@style/loginHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/loginHeader"
-        android:text="Login"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:text="Login" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputEmail"
@@ -48,17 +49,17 @@
     <Button
         android:id="@+id/login_button"
         style="@style/loginButton"
-        android:text="Login"
         android:layout_gravity="right"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:text="Login" />
 
     <TextView
         android:id="@+id/to_registration_button"
         style="@style/parent"
-        android:textAlignment="textEnd"
-        android:textStyle="bold"
-        android:textColor="@color/primaryTextColor"
+        android:layout_marginTop="@dimen/loginViewsMargin"
         android:text="@string/login_signup_hint"
-        android:layout_marginTop="@dimen/loginViewsMargin"/>
+        android:textAlignment="textEnd"
+        android:textColor="@color/primaryTextColor"
+        android:textStyle="bold" />
 
 </LinearLayout>

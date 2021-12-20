@@ -42,14 +42,14 @@ public class Category extends Fragment {
         progressDialog.setTitle("Loading...");
         progressDialog.show();
 
-        if ( InternetUtil.isInternetOnline(getActivity()) ){
+        if (InternetUtil.isInternetOnline(getActivity())) {
             ClearList();
             showAllCates();
         }
 
 
         getActivity().setTitle("Categories");
-        
+
         return view;
     }
 
@@ -66,13 +66,10 @@ public class Category extends Fragment {
             @Override
             public void onResponse(Call<List<CateModel>> call, Response<List<CateModel>> response) {
                 progressDialog.dismiss();
-                if (response.isSuccessful())
-                {
-                    if (response.body() != null)
-                    {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
                         List<CateModel> categoryList = response.body();
-                        for (CateModel c:categoryList)
-                        {
+                        for (CateModel c : categoryList) {
                             Integer idNum = c.getId();
                             String cate = c.getCategory();
                             Integer dem = c.getCount();
@@ -84,8 +81,7 @@ public class Category extends Fragment {
                         }
                         initRecyclerView();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Failed getting data", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -99,7 +95,7 @@ public class Category extends Fragment {
     }
 
     private void initRecyclerView() {
-        RecyclerCateList adapter = new RecyclerCateList(id,categories, count,getActivity());
+        RecyclerCateList adapter = new RecyclerCateList(id, categories, count, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -107,7 +103,7 @@ public class Category extends Fragment {
     private void ClearList() {
         categories.clear();
 
-        RecyclerCateList adapter = new RecyclerCateList(id,categories,count, getActivity());
+        RecyclerCateList adapter = new RecyclerCateList(id, categories, count, getActivity());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }

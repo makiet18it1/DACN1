@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -38,7 +39,6 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-
         View rootView = inflater.inflate(R.layout.login_layout, container, false);
 
 
@@ -49,8 +49,6 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
         Edreg_username = (EditText) rootView.findViewById(R.id.reg_username);
         Edreg_password = (EditText) rootView.findViewById(R.id.reg_password);
         Edreg_email = (EditText) rootView.findViewById(R.id.reg_email);
-
-
 
 
         logBtn.setOnClickListener(this);
@@ -75,7 +73,6 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
     }
 
 
-
     public void replaceFragment(Fragment someFragment) {
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -86,8 +83,7 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
     }
 
 
-    public void RegButtonClick()
-    {
+    public void RegButtonClick() {
 
         Fragment fragment = null;
         fragment = new ProfileRegister();
@@ -96,26 +92,23 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
     }
 
 
-    public void LogButtonClick()
-    {
+    public void LogButtonClick() {
 
-        if (!IsEmptyEditTextLogin()){
+        if (!IsEmptyEditTextLogin()) {
 
-            if ( InternetUtil.isInternetOnline(getActivity()) ){
+            if (InternetUtil.isInternetOnline(getActivity())) {
                 login();
-            }
-            else{
-                Toast.makeText(getContext(),"Check your internet connection", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_SHORT).show();
             }
 
         }
 
 
-
     }
 
 
-    private void login(){
+    private void login() {
 
 
         Retrofit.Builder builder = new Retrofit.Builder()
@@ -126,10 +119,8 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
         PostApi postApi = retrofit.create(PostApi.class);
 
 
-
-
-        String add1      =  Edreg_username.getText().toString();
-        String add2      =  Edreg_password.getText().toString();
+        String add1 = Edreg_username.getText().toString();
+        String add2 = Edreg_password.getText().toString();
 
         Login login = new Login(add1, add2);
 
@@ -138,7 +129,7 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
 
                     if (response.body() != null) {
@@ -153,7 +144,6 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
                         prefLoginEdit.commit();
 
 
-
                         Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
 
                         Fragment fragment = null;
@@ -162,7 +152,7 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
 
                     }
 
-                }else {
+                } else {
                     Toast.makeText(getContext(), "Username or password is not correct :(", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -175,29 +165,22 @@ public class ProfileLogin extends Fragment implements View.OnClickListener {
     }
 
 
-
-    private Boolean IsEmptyEditTextLogin(){
-
+    private Boolean IsEmptyEditTextLogin() {
 
 
-        if(Edreg_password.getText().toString().isEmpty() || Edreg_username.getText().toString().isEmpty()){
+        if (Edreg_password.getText().toString().isEmpty() || Edreg_username.getText().toString().isEmpty()) {
 
-            Toast toast = Toast.makeText(getActivity(),"Empty EditText", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getActivity(), "Empty EditText", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
 
 
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
-
-
-
-
-
 
 
 }

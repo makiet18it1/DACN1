@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
-
 
 
 public class RecyclerCommentList extends RecyclerView.Adapter<RecyclerCommentList.CommentViewHolder> {
@@ -53,7 +52,7 @@ public class RecyclerCommentList extends RecyclerView.Adapter<RecyclerCommentLis
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putInt("user_id",authorID.get(position));
+                bundle.putInt("user_id", authorID.get(position));
                 bundle.putString("bun_username", userID.get(position));
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Fragment myFragment = new UserInfo();
@@ -72,17 +71,18 @@ public class RecyclerCommentList extends RecyclerView.Adapter<RecyclerCommentLis
         return content.size();
     }
 
-    public class CommentViewHolder extends RecyclerView.ViewHolder{
+    public class CommentViewHolder extends RecyclerView.ViewHolder {
         TextView userID;
         TextView content;
         TextView videoID;
         RelativeLayout commentLayout;
-      public CommentViewHolder(@NonNull View itemView) {
-          super(itemView);
-          userID = itemView.findViewById(R.id.comment_id_user);
-          content = itemView.findViewById(R.id.comment_content);
-          videoID = itemView.findViewById(R.id.comment_video);
-          commentLayout = itemView.findViewById(R.id.comment_layout);
-      }
-  }
+
+        public CommentViewHolder(@NonNull View itemView) {
+            super(itemView);
+            userID = itemView.findViewById(R.id.comment_id_user);
+            content = itemView.findViewById(R.id.comment_content);
+            videoID = itemView.findViewById(R.id.comment_video);
+            commentLayout = itemView.findViewById(R.id.comment_layout);
+        }
+    }
 }

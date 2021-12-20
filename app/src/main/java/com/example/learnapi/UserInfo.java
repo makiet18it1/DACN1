@@ -20,6 +20,7 @@ import com.example.learnapi.Model.ProfileModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +41,6 @@ public class UserInfo extends Fragment {
     ProgressDialog progressDialog;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,14 +58,14 @@ public class UserInfo extends Fragment {
         txtUserName.setText("alo");
 
 
-        if ( InternetUtil.isInternetOnline(getActivity()) ){
+        if (InternetUtil.isInternetOnline(getActivity())) {
 
             ClearList();
             Bundle bundle = this.getArguments();
             if (bundle != null) {
                 ClearList();
                 String bundler_user = bundle.getString("bun_username");
-                getActivity().setTitle(bundler_user +" Profile");
+                getActivity().setTitle(bundler_user + " Profile");
                 Integer bundle_id = bundle.getInt("user_id");
                 Toast.makeText(getContext(), bundle_id.toString(), Toast.LENGTH_SHORT).show();
                 showAllPosts(bundle_id);
@@ -75,7 +75,6 @@ public class UserInfo extends Fragment {
             }
 
 
-
         }
 
 
@@ -83,15 +82,15 @@ public class UserInfo extends Fragment {
 
 
     }
-    private void showInfo(Integer id_num)
-    {
+
+    private void showInfo(Integer id_num) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(PostApi.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         String idnum = String.valueOf(id_num);
-        PostApi postApi= retrofit.create(PostApi.class);
+        PostApi postApi = retrofit.create(PostApi.class);
 
         Call<ProfileModel> call = postApi.getUser(idnum);
         call.enqueue(new Callback<ProfileModel>() {
@@ -103,16 +102,15 @@ public class UserInfo extends Fragment {
 
                         ProfileModel model = response.body();
 
-                            String name = model.getFirst_name();
-                            String mail = model.getEmail();
-                            String uname = model.getUsername();
-                            txtName.setText(name);
-                            txtEmail.setText(mail);
-                            txtUserName.setText(uname);
+                        String name = model.getFirst_name();
+                        String mail = model.getEmail();
+                        String uname = model.getUsername();
+                        txtName.setText(name);
+                        txtEmail.setText(mail);
+                        txtUserName.setText(uname);
 
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Failed get data", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -128,7 +126,7 @@ public class UserInfo extends Fragment {
         });
     }
 
-    private void showAllPosts(Integer id_num ) {
+    private void showAllPosts(Integer id_num) {
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -136,7 +134,7 @@ public class UserInfo extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        PostApi postApi= retrofit.create(PostApi.class);
+        PostApi postApi = retrofit.create(PostApi.class);
 
         String idnum = String.valueOf(id_num);
         Call<List<PostModel>> call = postApi.getUserVideo(idnum);
@@ -146,12 +144,12 @@ public class UserInfo extends Fragment {
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 progressDialog.dismiss();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     if (response.body() != null) {
                         List<PostModel> postList = response.body();
 
-                        for(PostModel h:postList){
+                        for (PostModel h : postList) {
 
 
                             Integer au_id = h.getAuthor();
@@ -176,7 +174,7 @@ public class UserInfo extends Fragment {
 
                     }
 
-                }else {
+                } else {
                     Log.d("fail", "fail");
                 }
             }
@@ -192,26 +190,22 @@ public class UserInfo extends Fragment {
     }
 
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         Log.d("Home", "initRecyclerView: init recyclerview.");
-        RecyclerHomeList adapter = new RecyclerHomeList(pkPost,  namePost , authorPost,authorID, imgPost, getActivity());
+        RecyclerHomeList adapter = new RecyclerHomeList(pkPost, namePost, authorPost, authorID, imgPost, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 
-    public void ClearList()
-    {
+    public void ClearList() {
         pkPost.clear();
         namePost.clear();
 
-        RecyclerHomeList adapter = new RecyclerHomeList(pkPost,  namePost , authorPost,authorID,imgPost, getActivity());
+        RecyclerHomeList adapter = new RecyclerHomeList(pkPost, namePost, authorPost, authorID, imgPost, getActivity());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
-
-
-
 
 
 }

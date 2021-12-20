@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import com.example.learnapi.Model.CateModel;
 import com.example.learnapi.Model.Comment;
 import com.example.learnapi.Model.LikeModel;
@@ -8,6 +9,7 @@ import com.example.learnapi.Model.ProfileModel;
 import com.example.learnapi.Model.User;
 
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -21,13 +23,12 @@ public interface PostApi {
 
 
     String root = "https://cook-store.herokuapp.com/";
-//    String root = "http://127.0.0.1:8000/";
+    //    String root = "http://127.0.0.1:8000/";
     String root1 = "https://bao-api.herokuapp.com/";
 
     String base_local = root1 + "api/v1/";
     String BASE_URL = root + "api/";
     String API_URL = root + "api/";
-
 
 
     @POST("login/")
@@ -53,16 +54,17 @@ public interface PostApi {
     Call<List<CateModel>> getCateList();
 
     @GET("videocategory/{id}/")
-    Call<List<PostModel>>getCateVideo(@Path(value = "id", encoded = true) String id);
-//
+    Call<List<PostModel>> getCateVideo(@Path(value = "id", encoded = true) String id);
+
+    //
 //    @POST("add/")
 //    Call<PostModel> addPost(@Header("Authorization")  String authToken, @Body PostModel postModel);
 //
     @GET("myvideo/")
-    Call<List<PostModel>> getMyVideo(@Header("Authorization")  String authToken);
+    Call<List<PostModel>> getMyVideo(@Header("Authorization") String authToken);
 
     @GET("myprofile/")
-    Call<List<ProfileModel>> getMyProfile(@Header("Authorization")  String authToken);
+    Call<List<ProfileModel>> getMyProfile(@Header("Authorization") String authToken);
 
     @GET("users/{id}")
     Call<ProfileModel> getUser(@Path(value = "id", encoded = true) String id);

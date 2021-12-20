@@ -6,6 +6,8 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.25104166666666666" />
         <entry key="..\:/Android/cook-app/app/src/main/res/drawable/radius.xml" value="0.2755208333333333" />
         <entry key="..\:/Android/cook-app/app/src/main/res/drawable/text.xml" value="0.2755208333333333" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/activity_intro.xml" value="0.259375" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/activity_main.xml" value="0.259375" />
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/cate_video_item.xml" value="0.4" />
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/cate_video_list.xml" value="0.259375" />
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/category.xml" value="0.259375" />
@@ -13,7 +15,14 @@
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/comment_item.xml" value="0.4" />
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/footer.xml" value="0.259375" />
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/item_dish_list.xml" value="0.259375" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/login.xml" value="0.259375" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/login_layout.xml" value="0.259375" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/my_profile.xml" value="0.259375" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/post_list.xml" value="0.259375" />
         <entry key="..\:/Android/cook-app/app/src/main/res/layout/post_list_item.xml" value="0.4" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/register.xml" value="0.259375" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/show_post.xml" value="0.264" />
+        <entry key="..\:/Android/cook-app/app/src/main/res/layout/user_info.xml" value="0.259375" />
         <entry key="app/src/main/res/drawable/frame.xml" value="0.1265625" />
         <entry key="app/src/main/res/drawable/ic_podval_category.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/drawable/ic_podval_dom.xml" value="0.2520833333333333" />

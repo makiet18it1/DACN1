@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -93,7 +94,7 @@ public class Footer extends Fragment implements View.OnClickListener {
 
                 if (CheckLogin()) {
                     fragment = new MyProfile();
-                }else {
+                } else {
                     fragment = new ProfileLogin();
                 }
                 replaceFragment(fragment);
@@ -103,9 +104,8 @@ public class Footer extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void runtimePermission()
-    {
-        Dexter.withContext(getContext()).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO)
+    public void runtimePermission() {
+        Dexter.withContext(getContext()).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
@@ -141,20 +141,14 @@ public class Footer extends Fragment implements View.OnClickListener {
     public Boolean CheckLogin() {
 
         SharedPreferences preferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        Boolean shered_category_id = preferences.getBoolean("loggedin",  false);
+        Boolean shered_category_id = preferences.getBoolean("loggedin", false);
 
         if (shered_category_id) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
-
-
-
-
-
 
 
 }

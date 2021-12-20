@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/parent_layout">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,30 +11,30 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
-        android:orientation="vertical"
-        android:background="@drawable/video">
+        android:background="@drawable/video"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="9dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="#62B1EF"
             android:background="@drawable/text"
-            >
+            android:backgroundTint="#62B1EF"
+            android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 app:cardCornerRadius="15dp">
+
                 <ImageView
-                android:id="@+id/cate_item_thumbnail"
-                android:layout_width="150dp"
-                android:layout_height="100dp">
-                </ImageView>
+                    android:id="@+id/cate_item_thumbnail"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"></ImageView>
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -65,16 +65,10 @@
                 android:textStyle="bold" />
 
 
-
         </LinearLayout>
 
 
-
     </LinearLayout>
-
-
-
-
 
 
 </RelativeLayout>

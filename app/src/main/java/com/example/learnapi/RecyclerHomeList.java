@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,9 +19,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
-
-
-public class RecyclerHomeList extends RecyclerView.Adapter<RecyclerHomeList.ViewHolder>{
+public class RecyclerHomeList extends RecyclerView.Adapter<RecyclerHomeList.ViewHolder> {
 
     private static final String TAG = "RecyclerProfileListAdapter";
 
@@ -63,7 +62,7 @@ public class RecyclerHomeList extends RecyclerView.Adapter<RecyclerHomeList.View
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putInt("user_id",authorID.get(position));
+                bundle.putInt("user_id", authorID.get(position));
                 bundle.putString("bun_username", authorPost.get(position));// Put anything what you want
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Fragment myFragment = new UserInfo();
@@ -81,9 +80,8 @@ public class RecyclerHomeList extends RecyclerView.Adapter<RecyclerHomeList.View
             public void onClick(View view) {
 
 
-
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",pkPost.get(position)); // Put anything what you want
+                bundle.putInt("id", pkPost.get(position)); // Put anything what you want
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragment myFragment = new ShowPost();
                 myFragment.setArguments(bundle);
@@ -92,7 +90,6 @@ public class RecyclerHomeList extends RecyclerView.Adapter<RecyclerHomeList.View
                         .replace(R.id.fragment_container, myFragment)
                         .addToBackStack(null)
                         .commit();
-
 
 
             }
@@ -105,7 +102,7 @@ public class RecyclerHomeList extends RecyclerView.Adapter<RecyclerHomeList.View
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView TId;
         TextView TName;

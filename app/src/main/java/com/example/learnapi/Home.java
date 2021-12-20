@@ -19,6 +19,7 @@ import com.example.learnapi.Model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +40,6 @@ public class Home extends Fragment {
     ProgressDialog progressDialog;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class Home extends Fragment {
         progressDialog.setTitle("Loading...");
         progressDialog.show();
 
-        if ( InternetUtil.isInternetOnline(getActivity()) ){
+        if (InternetUtil.isInternetOnline(getActivity())) {
             ClearList();
             showAllPosts();
         }
@@ -72,7 +72,7 @@ public class Home extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        PostApi postApi= retrofit.create(PostApi.class);
+        PostApi postApi = retrofit.create(PostApi.class);
         Call<List<PostModel>> call = postApi.getListPost();
 
         call.enqueue(new Callback<List<PostModel>>() {
@@ -80,12 +80,12 @@ public class Home extends Fragment {
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 progressDialog.dismiss();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     if (response.body() != null) {
                         List<PostModel> postList = response.body();
 
-                        for(PostModel h:postList){
+                        for (PostModel h : postList) {
 
 
                             Integer au_id = h.getAuthor();
@@ -110,7 +110,7 @@ public class Home extends Fragment {
 
                     }
 
-                }else {
+                } else {
                     Log.d("fail", "fail");
                 }
             }
@@ -126,26 +126,22 @@ public class Home extends Fragment {
     }
 
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         Log.d("Home", "initRecyclerView: init recyclerview.");
-        RecyclerHomeList adapter = new RecyclerHomeList(pkPost,  namePost , authorPost,authorID, imgPost, getActivity());
+        RecyclerHomeList adapter = new RecyclerHomeList(pkPost, namePost, authorPost, authorID, imgPost, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 
-    public void ClearList()
-    {
+    public void ClearList() {
         pkPost.clear();
         namePost.clear();
 
-        RecyclerHomeList adapter = new RecyclerHomeList(pkPost,  namePost , authorPost,authorID,imgPost, getActivity());
+        RecyclerHomeList adapter = new RecyclerHomeList(pkPost, namePost, authorPost, authorID, imgPost, getActivity());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
-
-
-
 
 
     @Override
@@ -158,7 +154,7 @@ public class Home extends Fragment {
         getView().setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                     getActivity().finish();
                     return true;
                 }

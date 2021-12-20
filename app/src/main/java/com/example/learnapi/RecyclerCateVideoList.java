@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,9 +19,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
-
-
-public class RecyclerCateVideoList extends RecyclerView.Adapter<RecyclerCateVideoList.ViewHolder>{
+public class RecyclerCateVideoList extends RecyclerView.Adapter<RecyclerCateVideoList.ViewHolder> {
 
     private static final String TAG = "RecyclerProfileListAdapter";
 
@@ -31,7 +30,7 @@ public class RecyclerCateVideoList extends RecyclerView.Adapter<RecyclerCateVide
 
     private Context mContext;
 
-    public RecyclerCateVideoList(ArrayList<Integer> pkPost, ArrayList<String> namePost, ArrayList<Integer> authorPost,ArrayList<String> imgUrl, Context mContext) {
+    public RecyclerCateVideoList(ArrayList<Integer> pkPost, ArrayList<String> namePost, ArrayList<Integer> authorPost, ArrayList<String> imgUrl, Context mContext) {
         this.pkPost = pkPost;
         this.namePost = namePost;
         this.authorPost = authorPost;
@@ -62,9 +61,8 @@ public class RecyclerCateVideoList extends RecyclerView.Adapter<RecyclerCateVide
             public void onClick(View view) {
 
 
-
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",pkPost.get(position)); // Put anything what you want
+                bundle.putInt("id", pkPost.get(position)); // Put anything what you want
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragment myFragment = new ShowPost();
                 myFragment.setArguments(bundle);
@@ -73,7 +71,6 @@ public class RecyclerCateVideoList extends RecyclerView.Adapter<RecyclerCateVide
                         .replace(R.id.fragment_container, myFragment)
                         .addToBackStack(null)
                         .commit();
-
 
 
             }
@@ -86,7 +83,7 @@ public class RecyclerCateVideoList extends RecyclerView.Adapter<RecyclerCateVide
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView TId;
         TextView TName;

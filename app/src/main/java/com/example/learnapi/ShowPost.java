@@ -108,7 +108,7 @@ public class ShowPost extends Fragment implements View.OnClickListener {
         recyclerComment.setAdapter(adapter);
     }
 
-    public void LikeToggle(Integer id){
+    public void LikeToggle(Integer id) {
         String str_id = String.valueOf(id);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(PostApi.API_URL)
@@ -119,14 +119,12 @@ public class ShowPost extends Fragment implements View.OnClickListener {
         likeModelCall.enqueue(new Callback<LikeModel>() {
             @Override
             public void onResponse(Call<LikeModel> call, Response<LikeModel> response) {
-                if (response.isSuccessful())
-                {
-                    if (response.body() != null){
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
                         LikeModel likeModel = response.body();
                         v_sh_like.setText(String.valueOf(likeModel.getCount()));
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Like response failed", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -154,7 +152,7 @@ public class ShowPost extends Fragment implements View.OnClickListener {
             public void onResponse(Call<Comment> call, Response<Comment> response) {
                 progressDialog.dismiss();
                 Log.d("good", "good");
-                Toast.makeText(getContext(), "Posted and response " +response.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Posted and response " + response.toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -285,7 +283,7 @@ public class ShowPost extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        }
+    }
 
 
     private void PostComment() {
@@ -328,6 +326,7 @@ public class ShowPost extends Fragment implements View.OnClickListener {
         }
 
     }
+
     public void replaceFragment(Fragment someFragment) {
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

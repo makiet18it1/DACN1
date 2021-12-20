@@ -1,4 +1,5 @@
 package com.example.learnapi;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.learnapi.Model.User;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +36,6 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
 
 
         View rootView = inflater.inflate(R.layout.register_layout, container, false);
@@ -69,7 +70,6 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
     }
 
 
-
     public void replaceFragment(Fragment someFragment) {
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -80,8 +80,7 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
     }
 
 
-    public void RegButtonClick()
-    {
+    public void RegButtonClick() {
 
 
         String str_reg_username = Edreg_username.getText().toString();
@@ -98,10 +97,9 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
         );
 
 
+        if (!IsEmptyEditTextLogin()) {
 
-        if (!IsEmptyEditTextLogin()){
-
-            if ( InternetUtil.isInternetOnline(getActivity()) ){
+            if (InternetUtil.isInternetOnline(getActivity())) {
                 RegisterInServer(userModel);
             }
 
@@ -111,8 +109,7 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
     }
 
 
-    public void LogButtonClick()
-    {
+    public void LogButtonClick() {
 
         Fragment fragment = null;
         fragment = new ProfileLogin();
@@ -129,19 +126,19 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        PostApi postApi= retrofit.create(PostApi.class);
+        PostApi postApi = retrofit.create(PostApi.class);
         Call<User> call = postApi.registrationUser(userModel);
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     if (response.body() != null) {
 
                         SharedPreferences preferences = getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor prefLoginEdit = preferences.edit();
-                        prefLoginEdit.putBoolean("registration",true);
+                        prefLoginEdit.putBoolean("registration", true);
                         prefLoginEdit.commit();
 
 
@@ -149,12 +146,13 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
                         replaceFragment(fragment);
 
                     }
-                }else {
+                } else {
                     Toast.makeText(getContext(), "Response.notSuccessful", Toast.LENGTH_SHORT).show();
                     Log.d("fail", "fail");
                 }
 
             }
+
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Log.d("fail", "fail");
@@ -165,24 +163,22 @@ public class ProfileRegister extends Fragment implements View.OnClickListener {
     }
 
 
+    private Boolean IsEmptyEditTextLogin() {
 
-    private Boolean IsEmptyEditTextLogin(){
 
+        if (Edreg_password.getText().toString().isEmpty() || Edreg_username.getText().toString().isEmpty() || Edreg_email.getText().toString().isEmpty()) {
 
-        if(Edreg_password.getText().toString().isEmpty() || Edreg_username.getText().toString().isEmpty()|| Edreg_email.getText().toString().isEmpty()){
-
-            Toast toast = Toast.makeText(getActivity(),"Empty EditText", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getActivity(), "Empty EditText", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
 
 
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
-
 
 
 }

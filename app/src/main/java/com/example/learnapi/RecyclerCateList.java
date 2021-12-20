@@ -33,7 +33,7 @@ public class RecyclerCateList extends RecyclerView.Adapter<RecyclerCateList.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
-        RecyclerCateList.ViewHolder holder = new  RecyclerCateList.ViewHolder(view);
+        RecyclerCateList.ViewHolder holder = new RecyclerCateList.ViewHolder(view);
         return holder;
 
     }
@@ -47,7 +47,7 @@ public class RecyclerCateList extends RecyclerView.Adapter<RecyclerCateList.View
                 Bundle bundle = new Bundle();
                 bundle.putString("category", category.get(position));
                 bundle.putInt("id", id.get(position));
-                Toast.makeText(context, "Count: "+ String.valueOf(count.get(position)), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Count: " + String.valueOf(count.get(position)), Toast.LENGTH_SHORT).show();
 
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Fragment myFragment = new CateVideo();
@@ -66,9 +66,10 @@ public class RecyclerCateList extends RecyclerView.Adapter<RecyclerCateList.View
         return category.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView category;
         RelativeLayout relativeLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             category = itemView.findViewById(R.id.cate);

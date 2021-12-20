@@ -20,6 +20,7 @@ import com.example.learnapi.Model.ProfileModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,7 +41,6 @@ public class MyProfile extends Fragment {
     ProgressDialog progressDialog;
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class MyProfile extends Fragment {
         progressDialog.show();
         txtUserName.setText("alo");
 
-        if ( InternetUtil.isInternetOnline(getActivity()) ){
+        if (InternetUtil.isInternetOnline(getActivity())) {
             ClearList();
             showAllPosts();
             showInfo();
@@ -70,15 +70,15 @@ public class MyProfile extends Fragment {
 
 
     }
-    private void showInfo()
-    {
+
+    private void showInfo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(PostApi.API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         String queryToken_ap = SharedDataGetSet.getMySavedToken(getActivity());
-        PostApi postApi= retrofit.create(PostApi.class);
+        PostApi postApi = retrofit.create(PostApi.class);
 
         Call<List<ProfileModel>> call = postApi.getMyProfile(queryToken_ap);
         call.enqueue(new Callback<List<ProfileModel>>() {
@@ -89,7 +89,7 @@ public class MyProfile extends Fragment {
                     if (response.body() != null) {
 
                         List<ProfileModel> model1 = response.body();
-                        for (ProfileModel model: model1) {
+                        for (ProfileModel model : model1) {
                             String name = model.getFirst_name();
                             String mail = model.getEmail();
                             String uname = model.getUsername();
@@ -98,8 +98,7 @@ public class MyProfile extends Fragment {
                             txtUserName.setText(uname);
                         }
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(getContext(), "Failed get data", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -124,7 +123,7 @@ public class MyProfile extends Fragment {
                 .build();
 
         String queryToken_ap = SharedDataGetSet.getMySavedToken(getActivity());
-        PostApi postApi= retrofit.create(PostApi.class);
+        PostApi postApi = retrofit.create(PostApi.class);
 
         Call<List<PostModel>> call = postApi.getMyVideo(queryToken_ap);
 
@@ -133,12 +132,12 @@ public class MyProfile extends Fragment {
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 progressDialog.dismiss();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     if (response.body() != null) {
                         List<PostModel> postList = response.body();
 
-                        for(PostModel h:postList){
+                        for (PostModel h : postList) {
 
 
                             Integer au_id = h.getAuthor();
@@ -163,7 +162,7 @@ public class MyProfile extends Fragment {
 
                     }
 
-                }else {
+                } else {
                     Log.d("fail", "fail");
                 }
             }
@@ -179,26 +178,22 @@ public class MyProfile extends Fragment {
     }
 
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         Log.d("Home", "initRecyclerView: init recyclerview.");
-        RecyclerHomeList adapter = new RecyclerHomeList(pkPost,  namePost , authorPost,authorID, imgPost, getActivity());
+        RecyclerHomeList adapter = new RecyclerHomeList(pkPost, namePost, authorPost, authorID, imgPost, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
 
-    public void ClearList()
-    {
+    public void ClearList() {
         pkPost.clear();
         namePost.clear();
 
-        RecyclerHomeList adapter = new RecyclerHomeList(pkPost,  namePost , authorPost, authorID, imgPost, getActivity());
+        RecyclerHomeList adapter = new RecyclerHomeList(pkPost, namePost, authorPost, authorID, imgPost, getActivity());
         adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
     }
-
-
-
 
 
 }
